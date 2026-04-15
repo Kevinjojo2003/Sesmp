@@ -6,8 +6,7 @@ plotly==5.24.1
 yfinance==0.2.66
 pandas==2.2.3
 numpy==1.26.4
-pandas-ta==0.3.14b0
-
+pandas-ta==0.4.71b0
 # ML / Deep Learning
 tensorflow==2.15.0
 scikit-learn==1.5.2
