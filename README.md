@@ -34,3 +34,9 @@ python train_multi_ticker.py --years 5 --epochs 150
 ## 🛡️ Disclaimer
 
 Educational purposes only. Not financial advice.
+
+## Deploy on Streamlit Community Cloud
+1. Create an app at https://share.streamlit.io pointing at `main_app.py` on `main`.
+2. Under **Settings > Secrets**, add `GEMINI_API_KEY` and `NEWS_API_KEY` (and the optional Reddit values).
+3. Trained models are not stored in this repo. Run `python train_multi_ticker.py` locally and commit or host the files in `models/`, or the prediction tabs will have nothing to load.
+4. The pinned TensorFlow and PyTorch packages are large and may exceed the free tier's memory. If the build fails, trim `requirements.txt` to what you use.

@@ -9,11 +9,23 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+def _secret(name: str, default: str = "") -> str:
+    """Environment variable first, then Streamlit secrets (used on Streamlit Cloud)."""
+    value = os.getenv(name)
+    if value:
+        return value
+    try:
+        import streamlit as st
+        return str(st.secrets.get(name, default))
+    except Exception:
+        return default
+
 # ── API Keys ──
-GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
-NEWS_API_KEY: str = os.getenv("NEWS_API_KEY", "")
-REDDIT_CLIENT_ID: str = os.getenv("REDDIT_CLIENT_ID", "")
-REDDIT_CLIENT_SECRET: str = os.getenv("REDDIT_CLIENT_SECRET", "")
+GEMINI_API_KEY: str = _secret("GEMINI_API_KEY")
+NEWS_API_KEY: str = _secret("NEWS_API_KEY")
+REDDIT_CLIENT_ID: str = _secret("REDDIT_CLIENT_ID")
+REDDIT_CLIENT_SECRET: str = _secret("REDDIT_CLIENT_SECRET")
 REDDIT_USER_AGENT: str = os.getenv("REDDIT_USER_AGENT", "stock_sentiment_bot/1.0")
 
 # ── Paths ──
